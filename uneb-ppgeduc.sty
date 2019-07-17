@@ -1,0 +1,94 @@
+% Declaracao do pacote de estilos
+\ProvidesPackage{uneb-ppgeduc}[2019/05/31 AbnTeX UNEB PPGEDUC]
+
+% Pacote necessario para inclusao do brasao na capa
+\RequirePackage{graphicx}
+
+% Novos comandos para inclusao do departamento e da filiacao
+\providecommand{\imprimirdepartamento}{}
+\newcommand{\departamento}[1]{\renewcommand{\imprimirdepartamento}{#1}}
+
+\providecommand{\imprimirfiliacao}{}
+\newcommand{\filiacao}[1]{\renewcommand{\imprimirfiliacao}{#1}}
+% --
+
+% Novos comandos para legendas de figuras e tabelas
+\newcommand{\fea}{\legend{Fonte: Elaborada pelo autor.}}
+\newcommand{\fbe}[1]{\legend{Fonte: Elaborada pelo autor, baseado em \citeonline{#1}.}}
+\newcommand{\fol}[1]{\legend{Fonte: \citeonline{#1}.}}
+\newcommand{\fdp}{\legend{Fonte: Dados da pesquisa.}}
+ 
+% ----
+% CAPA
+% ----
+\renewcommand{\imprimircapa}{
+	\begin{capa}
+		
+		\center
+
+		\begin{figure}
+        \centering
+        \includegraphics[scale=0.22]{uneb-brasao.png}
+      	\end{figure}
+		
+		\setlength{\parskip}{0.01cm}
+		\ABNTEXchapterfont\MakeUppercase\imprimirinstituicao\par
+		\ABNTEXchapterfont\MakeUppercase\imprimirdepartamento\par
+		\ABNTEXchapterfont\MakeUppercase\imprimirfiliacao\par
+		\setlength{\parskip}{0.2cm}
+				
+		\vspace*{2cm}
+
+		{\ABNTEXchapterfont\MakeUppercase\imprimirautor}
+
+		\vspace*{2cm}
+		
+		\begin{center}
+		\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo
+		\end{center}
+		\vfill
+				
+		\ABNTEXchapterfont\imprimirlocal
+
+		\ABNTEXchapterfont\imprimirdata
+		
+	\end{capa}
+}
+
+% --------------
+% FOLHA DE ROSTO
+% --------------
+
+\renewcommand{\folhaderostocontent}{
+  \begin{center}
+    {\ABNTEXchapterfont\MakeUppercase\imprimirautor}
+    \vspace*{4cm}
+    \par
+    \vspace*{\fill}\vspace*{\fill}
+    {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo}
+    \vspace*{\fill}
+    \par
+    \abntex@ifnotempty{\imprimirpreambulo}{
+      \hspace*{7cm}
+      \begin{minipage}{.5\textwidth}
+        \SingleSpacing
+        \imprimirpreambulo
+      \end{minipage}
+      \vspace*{\fill}
+    }
+    \vspace*{4cm}
+    \par
+    {\hspace*{7cm}
+    \begin{minipage}{.5\textwidth}
+      \SingleSpacing
+      \imprimirorientadorRotulo~\imprimirorientador
+      \par
+    \end{minipage}
+    }
+    \vspace*{\fill}
+    \par
+    {\ABNTEXchapterfont\imprimirlocal}
+    \par
+    {\ABNTEXchapterfont\imprimirdata}
+  \end{center}
+}%
