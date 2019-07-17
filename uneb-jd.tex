@@ -1,0 +1,39 @@
+% Documento de exemplo usando o pacote customizado da UNEB
+
+\documentclass[
+	12pt,
+	openright,		
+	twoside,
+	a4paper,
+	english,
+	brazil,
+	]{abntex2}
+
+\usepackage{uneb} 				% customizacoes do ABNTEX para a UNEB
+\usepackage[utf8]{inputenc}		% Codificacao do documento (acentos)
+
+% Informacoes para capa e folha de rosto
+\titulo{Título do Trabalho}
+\autor{Autor do Trabalho}
+
+\instituicao{Universidade do Estado da Bahia}
+\departamento{Departamento de Ciências Exatas e da Terra}
+\filiacao{Curso Superior Tecnológico em Jogos Digitais}
+\orientador{Prof. Fulano de Tal}
+
+\data{YYYY}
+\local{Salvador-BA}
+
+\preambulo{Texto apresentado ao Curso Superior Tecnológico de Jogos Digitais da Universidade do Estado da Bahia (UNEB), como requisito parcial para a obtenção do título de...
+}
+% --
+
+% -------------------
+% DOCUMENTO PRINCIPAL
+% -------------------
+\begin{document}
+
+\imprimircapa
+\imprimirfolhaderosto
+
+\end{document}
