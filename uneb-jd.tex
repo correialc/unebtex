@@ -9,8 +9,17 @@
 	brazil,
 	]{abntex2}
 
-\usepackage{uneb} 				% customizacoes do ABNTEX para a UNEB
+\usepackage{uneb} 				% Customizacoes do ABNTEX para a UNEB
+\usepackage{lmodern}			% Usa a fonte Latin Modern		
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificacao do documento (acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalografica
+\usepackage{indentfirst}		% Indenta o primeiro paragrafo de cada secao.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusao de graficos
+\usepackage{microtype} 			% Melhorias de justificacao
+\usepackage[alf,abnt-emphasize=bf]{abntex2cite}	% Citacoes padrao ABNT
+\usepackage{lipsum}				% Geracao automatica de textos de exemplo
 
 % Informacoes para capa e folha de rosto
 \titulo{Título do Trabalho}
@@ -28,12 +37,72 @@
 }
 % --
 
+% informacoes do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    		pdfsubject={\imprimirpreambulo},
+	    	pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		bookmarksdepth=4
+}
+\makeatother
+% --
+
+\setlength{\parindent}{1.3cm} 	% Identacao da primeira linha
+\setlength{\parskip}{0.2cm}  	% Espacamento entre um paragrafo e outro
+
+\makeindex	% Sumario
+
 % -------------------
 % DOCUMENTO PRINCIPAL
 % -------------------
 \begin{document}
 
+\selectlanguage{brazil}		% Idioma
+\frenchspacing 				% Retira espaco extra entre as frases
+
+% ----------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------
+\pretextual
+
 \imprimircapa
 \imprimirfolhaderosto
+
+% Resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+
+\lipsum[9-9]
+
+ \textbf{Palavras-chave}: jogos digitais. games. game design.
+\end{resumo}
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
 
 \end{document}
