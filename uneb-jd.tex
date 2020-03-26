@@ -20,6 +20,55 @@
 \usepackage{microtype} 			% Melhorias de justificacao
 \usepackage[alf,abnt-emphasize=bf]{abntex2cite}	% Citacoes padrao ABNT
 \usepackage{lipsum}				% Geracao automatica de textos de exemplo
+\usepackage{listings}			% Usa o pacote de Listings
+\usepackage{color}				% Usa o pacote de cores
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+
+\lstset{language=[Sharp]C,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  escapeinside={(*@}{@*)},
+  frame=single,
+  commentstyle=\color{greencomments},
+  keywordstyle=\color{bluekeywords},
+  stringstyle=\color{redstrings},
+  basicstyle=\ttfamily\ABNTEXfontereduzida,
+  inputencoding=utf8,
+  morekeywords={*, :-}
+}
+
+% ----------------
+% LISTA DE CÓDIGOS
+% ----------------
+
+% Altera o nome padrão do rótulo usado no comando \autoref{}
+\renewcommand{\lstlistingname}{Código}
+
+% Altera o rótulo a ser usando no elemento pré-textual "Lista de código"
+\renewcommand{\lstlistlistingname}{Lista de códigos}
+
+% Configura a "Lista de Códigos" conforme as regras da ABNT (para abnTeX2)
+\begingroup\makeatletter
+\let\newcounter\@gobble\let\setcounter\@gobbletwo
+  \globaldefs\@ne \let\c@loldepth\@ne
+  \newlistof{listings}{lol}{\lstlistlistingname}
+  \newlistentry{lstlisting}{lol}{0}
+\endgroup
+
+\renewcommand{\cftlstlistingaftersnum}{\hfill--\hfill}
+
+\let\oldlstlistoflistings\lstlistoflistings
+\renewcommand{\lstlistoflistings}{%
+   \begingroup%
+   \let\oldnumberline\numberline%
+   \renewcommand{\numberline}{\lstlistingname\space\oldnumberline}%
+   \oldlstlistoflistings%
+   \endgroup}
 
 % Informacoes para capa e folha de rosto
 \titulo{Título do Trabalho}
@@ -86,6 +135,16 @@
 % ---
 \pdfbookmark[0]{\listfigurename}{lof}
 \listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de códigos
+% ---
+\pdfbookmark[0]{\lstlistlistingname}{lol}
+\begin{KeepFromToc}
+\lstlistoflistings
+\end{KeepFromToc}
 \cleardoublepage
 % ---
 
